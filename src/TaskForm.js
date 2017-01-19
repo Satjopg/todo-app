@@ -26,14 +26,14 @@ class TaskForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <p>{this.state.input}</p>
-          </div>
           <input
             type="text"
             value={this.state.input}
             onChange={this.handleChange}
           />
+          <div>
+            <p>{this.state.input}</p>
+          </div>
         </form>
       </div>
     )
