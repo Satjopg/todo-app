@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+//import { Container } from "reactstrap";
 import TaskList from "./TaskList";
 import TaskForm from "./TaskForm"
 import Task from "./Task";
@@ -7,7 +8,7 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks:this.props.defaulttasks
+      tasks:props.defaultTasks
     };
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleToggleCompleted = this.handleToggleCompleted.bind(this)
@@ -23,7 +24,7 @@ class TodoApp extends React.Component {
     this.setState({
       tasks:this.state.tasks.concat({
         text:text,
-        completed:false,
+        completed:false
       })
     });
   };
@@ -33,7 +34,7 @@ class TodoApp extends React.Component {
       if(event.id === index) {
         task.completed = event.completed
       }
-      return task
+      return task;
     });
     this.setState({ tasks:newTasks });
   };
@@ -72,7 +73,7 @@ class TodoApp extends React.Component {
 }
 
 TodoApp.propTypes = {
-  defaulttasks: PropTypes.arrayOf(
+  defaultTasks: PropTypes.arrayOf(
     PropTypes.shape({
       text:PropTypes.string,
       completed:PropTypes.bool
@@ -80,4 +81,4 @@ TodoApp.propTypes = {
   ).isRequired
 };
 
-export default TodoApp
+export default TodoApp;

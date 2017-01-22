@@ -1,4 +1,6 @@
 import React, { PropTypes } from "react";
+import {Form} from "reactstrap";
+import TextField from "material-ui/TextField"
 
 class TaskForm extends React.Component {
   constructor(props) {
@@ -24,19 +26,16 @@ class TaskForm extends React.Component {
 
   render () {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.input}
-            onChange={this.handleChange}
-          />
-          <div>
-            <p>入力内容: {this.state.input}</p>
-          </div>
-        </form>
-      </div>
-    )
+      <Form onSubmit={this.handleSubmit}>
+        <TextField
+          id="task"
+          floatingLabelText="Your task is ..."
+          fullWidth={true}
+          value={this.state.input}
+          onChange={this.handleChange}
+        />
+      </Form>
+    );
   }
 };
 
@@ -44,4 +43,4 @@ TaskForm.PropTypes = {
   onAdd:PropTypes.func.isRequired,
 };
 
-export default TaskForm
+export default TaskForm;

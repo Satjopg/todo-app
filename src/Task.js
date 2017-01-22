@@ -1,5 +1,9 @@
 import React, { PropTypes} from "react";
-import RemoveButton from "./RemoveButton";
+//import RemoveButton from "./RemoveButton";
+import { ListItem } from 'material-ui/List';
+import Checkbox from 'material-ui/Checkbox';
+import IconButton from 'material-ui/IconButton';
+import { red500 } from 'material-ui/styles/colors';
 
 /**
 * 表示するタスク１つ１つのコンポーネント
@@ -8,12 +12,14 @@ import RemoveButton from "./RemoveButton";
 class Task extends React.Component {
   constructor(props) {
     super(props);
+    /*
     this.state = {
       showRemoveButton: false,
     };
+    */
     this.handleChange = this.handleChange.bind(this);
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
+//  this.handleMouseOver = this.handleMouseOver.bind(this);
+//  this.handleMouseOut = this.handleMouseOut.bind(this);
     this.handleClickRemove = this.handleClickRemove.bind(this);
   }
 
@@ -25,14 +31,14 @@ class Task extends React.Component {
   handleChange(event) {
     this.props.onToggleCompleted({
       id:this.props.id,
-      completed:event.target.checked,
+      completed:event.target.checked
     });
   };
 
 /**
 * 削除ボタン(リンク)の表示の有無
 * カーソルがタスクの上にのったら表示する。
-*/
+
 
   handleMouseOver() {
     this.setState({ showRemoveButton: true });
@@ -40,6 +46,7 @@ class Task extends React.Component {
   handleMouseOut() {
     this.setState({ showRemoveButton: false });
   };
+*/
 
 /**
 * 削除ボタンが押された時
@@ -51,24 +58,30 @@ class Task extends React.Component {
 
   render() {
     const { text, completed } = this.props;
-    const { showRemoveButton } = this.state;
+    //const { showRemoveButton } = this.state;
+    const checkbox = (
+      <Checkbox
+        checked={completed}
+        onCheck={this.handleChange}
+      />
+    );
+
+    const removeButton = (
+      <IconButton
+        iconClassName="material-icons"
+        iconStyle={{ color:red500 }}
+        onClick={this.handleClickRemove}
+      >
+        delete_task
+      </IconButton>
+    );
 
     return (
-      <div
-        onMouseOver={this.handleMouseOver}
-        onMouseOut={this.handleMouseOut}
-        >
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={this.handleChange}
-          />
-        {completed ? <s>{text}</s>: text}
-        <RemoveButton
-          show={showRemoveButton}
-          onClick={this.handleClickRemove}
-          />
-      </div>
+      <ListItem
+        leftCheckbox={checkbox}
+        primaryText={completed ? <s>{text}</s> : text}
+        rightIconButton={removeButton}
+      />
     );
   };
 };

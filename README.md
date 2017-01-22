@@ -33,3 +33,40 @@ toggleと言うのはこのように<s>打ち消し線</s>をすること。
 
 この定義により、Taskが持つ値は  
 textと完了の２つになる。ゆえに、これも定義し直す必要がある。  
+
+# かっけえデザイン
+1. reactstrapの利用  
+
+ * package.jsonに以下を追記
+  ```json
+  "dependencies": {
+    ...
+    "reactstrap": "^3.9.1",
+    "react-addons-css-transition-group": "^15.4.1",
+    "react-addons-transition-group": "^15.4.1"
+  }
+  ```
+ * ターミナルでinstall
+   ```
+   $ npm install
+   ```
+ * HTMLタグに応じてimportを行うと適応される。(今回のはシンプルすぎて全然かわらんけど...)
+  ```javascript
+  // 例:div要素のContainerが利用されていたとき
+  import { Container } from "reactstrap";
+  ```
+
+2. material-uiの利用
+ * package.jsonに以下のように追記  
+ ```json
+ "dependencies": {
+   ...
+   "material-ui": "^0.16.4",
+   "react-tap-event-plugin": "^2.0.1"
+ }
+ ```
+ * ターミナルでインストール
+ ```
+ $ npm install
+ ```
+ * あとはSource参照！！(これは変わる！！)

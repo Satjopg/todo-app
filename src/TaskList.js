@@ -1,10 +1,11 @@
 import React, { PropTypes } from "react";
+import {List, ListItem} from "material-ui/List"
 
 function TaskList(props) {
   const lists = props.tasks.map(function (task, index) {
-    return <li key={index}>{task}</li>
+    return <ListItem key={index}>{task}</ListItem>
   });
-  return <ul>{lists}</ul>
+  return <List>{lists}</List>
 };
 
 TaskList.propTypes = {

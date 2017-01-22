@@ -1,19 +1,26 @@
 import React from 'react';
 import {render} from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TodoApp from "./TodoApp";
 import './index.css';
+
+injectTapEventPlugin();
 
 /**
 * defaulttasksを定義し、localStorageにあったら代入する。
 * このときlocalStorageにはJSONで入っているので元に戻す。
 */
-let defaulttasks = [];
+
+let defaultTasks = [];
 if (typeof localStorage.tasks !== "undefined") {
-  defaulttasks = JSON.parse(localStorage.tasks);
+  defaultTasks = JSON.parse(localStorage.tasks);
 }
 
 const app = render(
-  <TodoApp defaulttasks={defaulttasks} />,
+  <MuiThemeProvider>
+    <TodoApp defaultTasks={defaultTasks} />
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 
