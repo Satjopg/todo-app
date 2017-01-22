@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import TaskList from "./TaskList";
 import TaskForm from "./TaskForm"
 import Task from "./Task";
@@ -7,7 +7,7 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks:[],
+      tasks:this.props.defaulttasks
     };
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleToggleCompleted = this.handleToggleCompleted.bind(this)
@@ -61,6 +61,23 @@ class TodoApp extends React.Component {
       </div>
     );
   }
+
+/**
+* 現在登録されているtaskを返す関数.
+* localstorageへの保存時に利用
+*/
+  getTasks() {
+    return this.state.tasks;
+  }
 }
+
+TodoApp.propTypes = {
+  defaulttasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      text:PropTypes.string,
+      completed:PropTypes.bool
+    })
+  ).isRequired
+};
 
 export default TodoApp
