@@ -11,6 +11,7 @@ class TodoApp extends React.Component {
     };
     this.handleAddTask = this.handleAddTask.bind(this);
     this.handleToggleCompleted = this.handleToggleCompleted.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
   };
 
 /**
@@ -37,16 +38,21 @@ class TodoApp extends React.Component {
     this.setState({ tasks:newTasks });
   };
 
+  handleRemove(event) {
+    const {tasks} = this.state;
+    const newTasks = tasks.filter((_, index) => (event.id !== index));
+    this.setState({ tasks:newTasks });
+  };
+
   render() {
-    const tasks = this.state.tasks.map((task, index) => {
-      return (
-        <Task
-          id={index}
-          onToggleCompleted={this.handleToggleCompleted}
-          {...task}
-        />
-      );
-    }, this);
+    const tasks = this.state.tasks.map((task, index) => (
+      <Task
+        id={index}
+        onToggleCompleted={this.handleToggleCompleted}
+        onRemove={this.handleRemove}
+        {...task}
+      />
+    ));
     return (
       <div>
         <h1>ToDo List!!</h1>

@@ -18,7 +18,7 @@ class TaskForm extends React.Component {
     event.preventDefault();
     if (this.state.input) {
       this.props.onAdd(this.state.input)
-      this.setState({ input:"", });
+      this.setState({ input:"" });
     };
   };
 
@@ -32,7 +32,7 @@ class TaskForm extends React.Component {
             onChange={this.handleChange}
           />
           <div>
-            <p>{this.state.input}</p>
+            <p>入力内容: {this.state.input}</p>
           </div>
         </form>
       </div>
